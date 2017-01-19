@@ -24,7 +24,7 @@
 		<commonsfileupload.version>1.3.1</commonsfileupload.version>
 		<antlr.version>2.7.7</antlr.version>
 		<jedis.version>2.9.0</jedis.version>
-		<drools.version>6.2.0.Final</drools.version>
+		<codehaus.version>1.9.13</codehaus.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -75,8 +75,23 @@
 			<artifactId>spring-orm</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
 
-
+		<!-- jackson -->
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-core-asl</artifactId>
+			<version>${codehaus.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>${codehaus.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-core</artifactId>
@@ -87,19 +102,12 @@
 			<artifactId>jackson-databind</artifactId>
 			<version>${jackson.version}</version>
 		</dependency>
-		<!-- <dependency> <groupId>commons-beanutils</groupId> <artifactId>commons-beanutils</artifactId> 
-			<version>1.8.3</version> </dependency> -->
-
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-jdbc</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
 		<dependency>
 			<groupId>com.thetransactioncompany</groupId>
 			<artifactId>cors-filter</artifactId>
 			<version>1.7</version>
 		</dependency>
+
 		<!-- Hibernate framework -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -116,9 +124,8 @@
 			<artifactId>hibernate-core</artifactId>
 			<version>${hibernate.version}</version>
 		</dependency>
-		<!-- Hibernate annotation -->
 
-		<!-- Hibernate library dependecy start -->
+		<!-- xml parser -->
 		<dependency>
 			<groupId>dom4j</groupId>
 			<artifactId>dom4j</artifactId>
@@ -136,6 +143,8 @@
 			<artifactId>commons-collections</artifactId>
 			<version>${commonscollections.version}</version>
 		</dependency>
+
+
 		<!--for http client -->
 		<dependency>
 			<groupId>commons-httpclient</groupId>
@@ -157,11 +166,6 @@
 			<groupId>antlr</groupId>
 			<artifactId>antlr</artifactId>
 			<version>${antlr.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>commons-beanutils</groupId>
-			<artifactId>commons-beanutils</artifactId>
-			<version>1.9.2</version>
 		</dependency>
 	</dependencies>
 	<build>
