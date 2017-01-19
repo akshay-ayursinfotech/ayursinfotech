@@ -9,12 +9,8 @@
 	<url>http://maven.apache.org</url>
 
 	<properties>
-	<!-- 	<spring.version>4.0.7.RELEASE</spring.version>
-	 -->	<jdk.source.version>1.7</jdk.source.version>
+		<jdk.source.version>1.7</jdk.source.version>
 		<jdk.target.version>1.7</jdk.target.version>
-	<!-- 	<mysql.version>5.1.6</mysql.version>
-		<junit.version>3.8.1</junit.version>
-		<jackson.version>1.9.13</jackson.version> -->
 	</properties>
 	<dependencies>
 		<dependency>
@@ -22,56 +18,64 @@
 			<artifactId>virtualcc-core</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-<!-- 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>${junit.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>${mysql.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-framework-bom</artifactId>
-			<version>${spring.version}</version>
-			<type>pom</type>
-			<scope>import</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-core</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-web</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-core-asl</artifactId>
-			<version>${jackson.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-mapper-asl</artifactId>
-			<version>${jackson.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-jdbc</artifactId>
-			<version>${spring.version}</version>
-		</dependency> -->
 	</dependencies>
-
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<build>
+				<resources>
+					<resource>
+						<directory>src/main/resources/config</directory>
+					</resource>
+					<resource>
+						<directory>src/main/resources/properties/dev</directory>
+					</resource>
+				</resources>
+			</build>
+		</profile>
+		<profile>
+			<id>prod</id>
+			<build>
+				<resources>
+					<resource>
+						<directory>src/main/resources/config</directory>
+					</resource>
+					<resource>
+						<directory>src/main/resources/properties/prod</directory>
+					</resource>
+				</resources>
+			</build>
+		</profile>
+		<profile>
+			<id>staging</id>
+			<build>
+				<resources>
+					<resource>
+						<directory>src/main/resources/config</directory>
+					</resource>
+					<resource>
+						<directory>src/main/resources/properties/staging</directory>
+					</resource>
+				</resources>
+			</build>
+		</profile>
+		<profile>
+			<id>uat</id>
+			<build>
+				<resources>
+					<resource>
+						<directory>src/main/resources/config</directory>
+					</resource>
+					<resource>
+						<directory>src/main/resources/properties/uat</directory>
+					</resource>
+				</resources>
+			</build>
+		</profile>
+	</profiles>
 	<build>
 		<finalName>virtualcc-app</finalName>
 		<plugins>

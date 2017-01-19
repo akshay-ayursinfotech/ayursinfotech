@@ -168,6 +168,63 @@
 			<version>${antlr.version}</version>
 		</dependency>
 	</dependencies>
+<profiles>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<build>
+				<resources>
+					<resource>
+						<directory>src/main/resources/config</directory>
+					</resource>
+					<resource>
+						<directory>src/main/resources/properties/dev</directory>
+					</resource>
+				</resources>
+			</build>
+		</profile>
+		<profile>
+			<id>prod</id>
+			<build>
+				<resources>
+					<resource>
+						<directory>src/main/resources/config</directory>
+					</resource>
+					<resource>
+						<directory>src/main/resources/properties/prod</directory>
+					</resource>
+				</resources>
+			</build>
+		</profile>
+		<profile>
+			<id>staging</id>
+			<build>
+				<resources>
+					<resource>
+						<directory>src/main/resources/config</directory>
+					</resource>
+					<resource>
+						<directory>src/main/resources/properties/staging</directory>
+					</resource>
+				</resources>
+			</build>
+		</profile>
+		<profile>
+			<id>uat</id>
+			<build>
+				<resources>
+					<resource>
+						<directory>src/main/resources/config</directory>
+					</resource>
+					<resource>
+						<directory>src/main/resources/properties/uat</directory>
+					</resource>
+				</resources>
+			</build>
+		</profile>
+	</profiles>
 	<build>
 		<finalName>virtualcc-core</finalName>
 		<plugins>
