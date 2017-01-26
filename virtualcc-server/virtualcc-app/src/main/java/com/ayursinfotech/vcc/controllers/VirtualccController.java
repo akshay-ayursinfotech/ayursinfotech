@@ -1,5 +1,6 @@
 package com.ayursinfotech.vcc.controllers;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -12,8 +13,10 @@ import com.ayursinfotech.vcc.response.BaseResponse;
 import com.ayursinfotech.vcc.service.VirtualccService;
 
 @Controller
-@RequestMapping(value = "/virtualcc")
 public class VirtualccController {
+
+	private static final Logger LOGGER = Logger
+			.getLogger(VirtualccController.class);
 
 	@Autowired
 	private VirtualccService virtualccService;
@@ -22,6 +25,7 @@ public class VirtualccController {
 	@ResponseStatus(value = HttpStatus.OK)
 	@ResponseBody
 	public BaseResponse ping() {
+		LOGGER.info("start sExecuting ping");
 		return virtualccService.ping();
 	}
 }

@@ -1,5 +1,6 @@
 package com.ayursinfotech.vcc.service.impl;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,11 +12,15 @@ import com.ayursinfotech.vcc.util.VirtualccConstants;
 @Service
 public class VirtualccServiceImpl implements VirtualccService {
 
+	private static final Logger LOGGER = Logger
+			.getLogger(VirtualccServiceImpl.class);
+
 	@Autowired
 	private VirtualccDAO virtualccDAO;
 
 	@Override
 	public BaseResponse ping() {
+		LOGGER.info("start executing ping");
 		BaseResponse response = new BaseResponse();
 		try {
 			if (virtualccDAO.ping()) {
@@ -24,9 +29,9 @@ public class VirtualccServiceImpl implements VirtualccService {
 				response.setStatus(VirtualccConstants.STATUS_FAILURE);
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.error(e);
 		}
+		LOGGER.info("end executing ping");
 		return response;
 	}
 
