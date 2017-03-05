@@ -2,8 +2,11 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:mongo="http://www.springframework.org/schema/data/mongo"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/data/mongo
+        http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd		
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
 	<mvc:annotation-driven
@@ -33,11 +36,11 @@
 	</bean>
 
 	<bean id="dataSourceProperties"
-    class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
- 
-    <property name="location" value="classpath:datasource.properties" />
- 
-</bean>
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+
+		<property name="location" value="classpath:datasource.properties" />
+
+	</bean>
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
@@ -45,5 +48,15 @@
 		<property name="username" value="root" />
 		<property name="password" value="root" />
 	</bean>
+
+	<!-- Configure the Mongo Server -->
+	<mongo:mongo id="mongo" host="localhost" port="27017" />
+
+	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+		<constructor-arg ref="mongo" />
+		<constructor-arg name="databaseName" value="jcg" />
+	</bean>
+
+	<mongo:repositories base-package="com.ayursinfotech.vcc.mongo.repository"></mongo:repositories>
 
 </beans>
